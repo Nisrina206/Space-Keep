@@ -104,3 +104,14 @@ document.addEventListener('click', function (e) {
 
     window.open('/admin/aspirasi/pdf?' + params.toString(), '_self');
 });
+
+document.addEventListener('click', function (e) {
+
+    const btn = e.target.closest('.btn-detail');
+    if (!btn) return;
+
+    const id = btn.dataset.id;
+
+    document.getElementById('btnCetakId').href =
+        `/admin/cetak/${id}`;
+});

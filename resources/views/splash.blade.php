@@ -21,7 +21,7 @@
 
         <script>
             setTimeout(() => {
-                window.location.href = "/login";
+                window.location.href = "/landing";
             }, 3500); // 3,5 detik
         </script>
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Aspirasi;
 use Illuminate\Http\JsonResponse;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class HistoryController extends Controller
 {
@@ -113,5 +114,14 @@ class HistoryController extends Controller
     $item = Aspirasi::findOrFail($id);
 
     return view('admin.history.edit', compact('item'));
+}
+
+public function cetakPerId($id)
+{
+    $row = Aspirasi::with(['siswa','kategori'])->findOrFail($id);
+
+    $pdf = Pdf::loadView('pdf.cetak-per-id', compact('row'));
+
+    return $pdf->download('aspirasi-'.$row->id_aspirasi.'.pdf');
 }
 }

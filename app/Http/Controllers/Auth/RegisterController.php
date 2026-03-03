@@ -45,6 +45,7 @@ class RegisterController extends Controller
         // 2️⃣ SIMPAN KE SISWA (DATA DETAIL)
         Siswa::create([
             'user_id'       => $user->id,
+            'nis'          => $request->nis,  
             'nama_lengkap'  => $request->nama_lengkap,
             'kelas'         => $request->kelas,
         ]);

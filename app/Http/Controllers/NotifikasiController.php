@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Aspirasi;
+use App\Models\Notifikasi; 
 use Illuminate\Support\Facades\Auth;
 
 class NotifikasiController extends Controller
@@ -25,21 +26,21 @@ class NotifikasiController extends Controller
     }
 
     public function siswa()
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
-        $data = Aspirasi::where('siswa_id', $user->id)
-            ->whereIn('status', ['Diproses', 'Selesai'])
-            ->latest()
-            ->take(5)
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'judul' => 'Update Aspirasi',
-                    'pesan' => 'Aspirasi kamu ' . strtolower($item->status)
-                ];
-            });
+    $data = Notifikasi::where('target_id', $user->id)
+        ->where('role_penerima', 'siswa')
+        ->latest('created_at')
+        ->take(5)
+        ->get()
+        ->map(function ($item) {
+            return [
+                'judul' => 'Update Aspirasi',
+                'pesan' => $item->pesan
+            ];
+        });
 
-        return response()->json($data);
-    }
+    return response()->json($data);
+}
 }

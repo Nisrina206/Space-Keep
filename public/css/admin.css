@@ -906,3 +906,290 @@ table{
     background: white;
     padding: 2px;
 }
+
+.modal-cetak {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-cetak.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 350px;
+}
+
+.range-area {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-cetak {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-cetak.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 360px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.range-area {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+.btn-cetak {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 10px 26px;      /* IDENTIK FILTER */
+    font-weight: 600;
+    border-radius: 12px;
+
+    background: #2b9aa0;     /* SAMAKAN PERSIS */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* ICON */
+.btn-cetak img {
+    width: 14px;
+    height: 14px;
+
+    display: block;          /* ✅ WAJIB (hilangkan ruang bawah img) */
+    filter: brightness(0) invert(1);
+}
+
+.btn-filter,
+.btn-cetak {
+    height: 36px;              /* ✅ paksa tinggi identik */
+    padding: 0 18px;           /* ✅ biar proporsional */
+    display: inline-flex;
+    align-items: center;
+}
+
+/* ===== MODAL OVERLAY ===== */
+.modal-cetak {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+}
+
+/* AKTIF */
+.modal-cetak.show {
+    display: flex;
+}
+
+/* ===== KOTAK MODAL ===== */
+.modal-content {
+    background: white;
+    width: 380px;
+
+    border-radius: 12px;
+    padding: 22px 24px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    animation: modalPop 0.15s ease-out;
+}
+
+/* ANIMASI HALUS */
+@keyframes modalPop {
+    from {
+        transform: scale(0.96);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ===== JUDUL ===== */
+.modal-content h3 {
+    margin-bottom: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* ===== LABEL RADIO ===== */
+.modal-content label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+/* ===== RANGE TANGGAL ===== */
+.range-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin: 10px 0 4px 22px;
+}
+
+.range-area input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+
+    padding: 6px 8px;
+    font-size: 13px;
+}
+
+/* ===== BUTTON AREA ===== */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+/* ===== BUTTON STYLE ===== */
+.modal-actions button {
+    border: none;
+    padding: 6px 14px;
+
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* BATAL */
+#batalCetak {
+    background: #e5e7eb;
+    color: #333;
+}
+
+#batalCetak:hover {
+    background: #d1d5db;
+}
+
+/* CETAK */
+#prosesCetak {
+    background: #2b9aa0;   /* SAMAKAN WARNA DASHBOARD */
+    color: white;
+}
+
+#prosesCetak:hover {
+    background: #238b90;
+}
+
+.flatpickr-input {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 13px;
+    width: 130px;
+}
+
+/* Kalender popup */
+.flatpickr-calendar {
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hari terpilih */
+.flatpickr-day.selected {
+    background: #2b9aa0;
+    border-color: #2b9aa0;
+}
+
+.date-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.date-field input {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 28px 8px 10px;
+    font-size: 13px;
+    width: 135px;
+}
+
+/* TOMBOL X RESET */
+.reset-date {
+    position: absolute;
+    right: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #888;
+    user-select: none;
+}
+
+.reset-date:hover {
+    color: #e11d48; /* merah halus saat hover */
+}
+
+.sd {
+    font-size: 13px;
+    margin: 0 6px;
+    color: #555;
+}
+
+.sort-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;          /* jarak teks & select */
+}
+
+.sort-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

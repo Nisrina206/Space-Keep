@@ -1,7 +1,6 @@
 <div class="modal-overlay" id="modalDetail">
     <div class="modal-box">
 
-        {{-- HEADER --}}
         <div class="modal-header-top">
             <div class="school-info">
                 <img src="{{ asset('img/logo.png') }}" class="logo">
@@ -15,7 +14,6 @@
 
         <h2 class="modal-title">Detail Aspirasi</h2>
 
-        {{-- GRID UTAMA --}}
         <div class="detail-grid">
 
             <div class="form-group">
@@ -38,13 +36,11 @@
                 <input type="text" id="detailLokasi" readonly>
             </div>
 
-            {{-- KIRI: KETERANGAN --}}
             <div class="form-group keterangan">
                 <label>Keterangan<span>*</span></label>
                 <textarea id="detailKeterangan" readonly></textarea>
             </div>
 
-            {{-- KANAN: BUKTI + STATUS --}}
             <div class="bukti-wrapper">
                 <label>Bukti<span>*</span></label>
 
@@ -52,20 +48,19 @@
                     <img id="detailBukti" src="">
                 </div>
 
-                <div class="status-wrapper">
+                 <div class="status-wrapper">
     <label>Status<span>*</span></label>
     <span id="detailStatus" class="status-pill {{ strtolower($item->status) }}">
         {{ $item->status }}
     </span>
 </div>
-
             </div>
 
         </div>
 
         {{-- FOOTER --}}
         <div class="modal-footer">
-            <button class="btn-outline" id="btnPdf">Simpan Bukti</button>
+            <a class="btn-outline" id="btnPdf">Simpan Bukti</a>
             <button class="btn-primary" id="closeModal">Kembali</button>
         </div>
 

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/filter-tanggal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/history-admin.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
 </head>
 <body>
@@ -137,8 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 </script>
-
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
 </body>

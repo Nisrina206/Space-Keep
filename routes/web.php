@@ -14,18 +14,26 @@ use App\Http\Controllers\NotifikasiController;
 
 use App\Http\Controllers\Siswa\DashboardSiswaController;
 use App\Http\Controllers\Siswa\AspirasiSiswaController;
+use App\Http\Controllers\Siswa\ProfilSiswaController;
+use App\Http\Controllers\Siswa\StatusSiswaController;
+
+use App\Http\Controllers\Admin\StatusController;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
-| SPLASH
+| SPLASH & LANDING PAGE
 |--------------------------------------------------------------------------
 */
 
 Route::get('/', function (): View {
     return view('splash');
 });
+
+Route::get('/landing', function () {
+    return view('landing');
+})->name('landing');
 
 /*
 |--------------------------------------------------------------------------
@@ -112,7 +120,22 @@ Route::prefix('admin')
 
         Route::get('/notifikasi', [NotifikasiController::class, 'admin'])
             ->name('admin.notifikasi');
+
+         /*
+        |---------------- CETAK ----------------|
+        */
+
+         Route::get('/cetak', [StatusController::class, 'cetak'])
+        ->name('admin.cetak');
+
+         /*
+        |---------------- CETAK PER ID ----------------|
+        */
+
+         Route::get('/admin/cetak/{id}', [HistoryController::class, 'cetakPerId'])
+        ->name('admin.cetak.perid');
     });
+
 
 /*
 |--------------------------------------------------------------------------
@@ -154,14 +177,14 @@ Route::middleware(['auth', 'siswa'])->prefix('siswa')->group(function () {
     |---------------- ASPIRASI SISWA ----------------|
     */
 
-    Route::get('/siswa/aspirasi', [AspirasiSiswaController::class, 'index'])
+    Route::get('/aspirasi', [AspirasiSiswaController::class, 'index'])
         ->name('siswa.aspirasi');
 
-    Route::post('/siswa/aspirasi/store', [AspirasiSiswaController::class, 'store'])
+    Route::post('/aspirasi/store', [AspirasiSiswaController::class, 'store'])
         ->name('siswa.aspirasi.store');
 
     /*
-    |---------------- STATUS SISWA ----------------|
+    |---------------- STATUS SISWA (MENUNGGU)----------------|
     */
 
     Route::get('/status/menunggu', [DashboardSiswaController::class, 'menunggu'])
@@ -169,16 +192,49 @@ Route::middleware(['auth', 'siswa'])->prefix('siswa')->group(function () {
 
     Route::get('/status/menunggu/search', [DashboardSiswaController::class, 'search']);
 
-
+    /*
+    |---------------- STATUS SISWA (DIPROSES)----------------|
+    */
 
     Route::get('/status/diproses', [DashboardSiswaController::class, 'diproses'])
         ->name('siswa.status.diproses');
 
+    Route::get('/status/diproses/search', [DashboardSiswaController::class, 'searchproses']);
+
+
+    /*
+    |---------------- STATUS SISWA (SELESAI)----------------|
+    */
+
     Route::get('/status/selesai', [DashboardSiswaController::class, 'selesai'])
         ->name('siswa.status.selesai');
 
-Route::get('/profil', function () {
-    return view('siswa.profil');
-})->name('siswa.profil');
+    Route::get('/status/selesai/search', [DashboardSiswaController::class, 'searchselesai']);
+
+    
+    /*
+    |---------------- PROFILE SISWA----------------|
+    */
+
+   Route::get('/profil', [ProfilSiswaController::class, 'index'])
+    ->name('siswa.profil');
+
+Route::post('/profil/update-password', [ProfilSiswaController::class, 'updatePassword'])
+    ->name('siswa.password.update');
+
+Route::post('/logout', [ProfilSiswaController::class, 'logout'])
+    ->name('siswa.logout');
+
+
+    /*
+    |---------------- CETAK PER ID ----------------|
+    */
+
+    Route::get('/siswa/cetak/{id}', [HistoryController::class, 'cetakPerId'])
+    ->name('siswa.cetak.perid');
 
 });
+
+// notifikasi siswa//
+Route::get('/notifikasi/siswa', [NotifikasiController::class, 'siswa'])
+    ->middleware('auth');

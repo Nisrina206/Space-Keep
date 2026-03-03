@@ -46,14 +46,25 @@
             <span>Sandi : admin123</span>
 
             <!-- FORM LOGOUT (POST - BENAR LARAVEL) -->
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="logout-btn">
-                    Logout
-                </button>
-            </form>
+            <form action="{{ route('logout') }}" method="POST" id="logoutForm">
+    @csrf
+
+    <button type="button" class="logout-btn" id="btnLogout">
+        Logout
+    </button>
+</form>
         </div>
 
     </div>
+<script>
+document.getElementById('btnLogout').addEventListener('click', function () {
 
+    const yakin = confirm('Apakah yakin ingin keluar?');
+
+    if (yakin) {
+        document.getElementById('logoutForm').submit();
+    }
+
+});
+</script>
 </aside>

@@ -43,17 +43,22 @@
                 :preserve="request()->only('sort')" 
             />
 
+
             {{-- SORT --}}
-            <form method="GET" action="{{ route('siswa.status.menunggu') }}">
-                <select name="sort" class="sort-select" onchange="this.form.submit()">
-                    <option value="desc" {{ request('sort','desc') === 'desc' ? 'selected' : '' }}>
-                        Terbaru - Lama
-                    </option>
-                    <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>
-                        Lama - Terbaru
-                    </option>
-                </select>
-            </form>
+            <form method="GET" action="{{ route('siswa.status.menunggu') }}" class="sort-wrapper">
+    <input type="hidden" name="status" value="{{ request('status') }}">
+
+    <span class="sort-label">Sort By</span>
+
+    <select name="sort" class="sort-select" onchange="this.form.submit()">
+        <option value="desc" {{ request('sort','desc') === 'desc' ? 'selected' : '' }}>
+            Terbaru - Lama
+        </option>
+        <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>
+            Lama - Terbaru
+        </option>
+    </select>
+</form>
 
         </div>
     </div>
@@ -96,7 +101,7 @@
                     <span class="status-badge menunggu">Menunggu</span>
                 </td>
                 <td class="aksi-cell">
-                    <button
+                     <button
                         class="btn-aksi btn-detail"
                         data-nis="{{ $item->siswa->nis }}"
                         data-nama="{{ $item->siswa->nama_lengkap }}"

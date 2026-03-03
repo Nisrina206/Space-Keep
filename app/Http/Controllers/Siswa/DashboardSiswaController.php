@@ -130,4 +130,154 @@ class DashboardSiswaController extends Controller
         return response()->json($data);
     }
 
+
+     public function diproses(Request $request)
+{
+    $user = Auth::user();
+
+    if (!$user->siswa) {
+        abort(403, 'Data siswa tidak ditemukan');
+    }
+
+    $sort = $request->sort === 'asc' ? 'asc' : 'desc';
+
+    $query = Aspirasi::with(['siswa','kategori'])
+        ->where('siswa_id', $user->siswa->id)
+        ->where('status', 'Diproses');
+
+    /* ================= FILTER ================= */
+
+    // FILTER KATEGORI
+    if ($request->kategori) {
+        $query->where('kategori_id', $request->kategori);
+    }
+
+    // FILTER TANGGAL
+    if ($request->filled('from')) {
+        $query->whereDate('created_at', '>=', $request->from);
+    }
+
+    if ($request->filled('to')) {
+        $query->whereDate('created_at', '<=', $request->to);
+    }
+
+    $data = $query
+        ->orderBy('created_at', $sort)
+        ->paginate(5)
+        ->withQueryString();
+
+    $kategoriList = Kategori::orderBy('ket_kategori')->get();
+
+    return view('siswa.status.diproses', compact('data','kategoriList'));
+}
+
+ /**
+     * =============================
+     * LIVE SEARCH (AJAX)
+     * =============================
+     */
+    public function searchproses(Request $request): JsonResponse
+    {
+        $q      = $request->query('search');
+        $status = $request->query('status', 'diproses');
+
+        if (!$q) {
+            return response()->json([]);
+        }
+
+        $data = Aspirasi::with(['siswa', 'kategori'])
+            ->where('status', $status)
+            ->where(function ($query) use ($q) {
+                $query
+                    ->whereHas('siswa', function ($s) use ($q) {
+                        $s->where('nis', 'like', "%{$q}%")
+                          ->orWhere('nama_lengkap', 'like', "%{$q}%");
+                    })
+                    ->orWhereHas('kategori', function ($k) use ($q) {
+                        $k->where('ket_kategori', 'like', "%{$q}%");
+                    })
+                    ->orWhere('lokasi', 'like', "%{$q}%");
+            })
+            ->latest()
+            ->limit(10)
+            ->get();
+
+        return response()->json($data);
+    }
+
+
+    public function selesai(Request $request)
+{
+    $user = Auth::user();
+
+    if (!$user->siswa) {
+        abort(403, 'Data siswa tidak ditemukan');
+    }
+
+    $sort = $request->sort === 'asc' ? 'asc' : 'desc';
+
+    $query = Aspirasi::with(['siswa','kategori'])
+        ->where('siswa_id', $user->siswa->id)
+        ->where('status', 'Selesai');
+
+    /* ================= FILTER ================= */
+
+    // FILTER KATEGORI
+    if ($request->kategori) {
+        $query->where('kategori_id', $request->kategori);
+    }
+
+    // FILTER TANGGAL
+    if ($request->filled('from')) {
+        $query->whereDate('created_at', '>=', $request->from);
+    }
+
+    if ($request->filled('to')) {
+        $query->whereDate('created_at', '<=', $request->to);
+    }
+
+    $data = $query
+        ->orderBy('created_at', $sort)
+        ->paginate(5)
+        ->withQueryString();
+
+    $kategoriList = Kategori::orderBy('ket_kategori')->get();
+
+    return view('siswa.status.selesai', compact('data','kategoriList'));
+}
+
+ /**
+     * =============================
+     * LIVE SEARCH (AJAX)
+     * =============================
+     */
+    public function searchselesai(Request $request): JsonResponse
+    {
+        $q      = $request->query('search');
+        $status = $request->query('status', 'selesai');
+
+        if (!$q) {
+            return response()->json([]);
+        }
+
+        $data = Aspirasi::with(['siswa', 'kategori'])
+            ->where('status', $status)
+            ->where(function ($query) use ($q) {
+                $query
+                    ->whereHas('siswa', function ($s) use ($q) {
+                        $s->where('nis', 'like', "%{$q}%")
+                          ->orWhere('nama_lengkap', 'like', "%{$q}%");
+                    })
+                    ->orWhereHas('kategori', function ($k) use ($q) {
+                        $k->where('ket_kategori', 'like', "%{$q}%");
+                    })
+                    ->orWhere('lokasi', 'like', "%{$q}%");
+            })
+            ->latest()
+            ->limit(10)
+            ->get();
+
+        return response()->json($data);
+    }
+
 }

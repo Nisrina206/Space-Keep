@@ -34,7 +34,8 @@
     /* ANIMASI AWAL */
     transform: scale(.95);
     opacity: 0;
-    transition: .18s ease;
+    transition: transform .22s cubic-bezier(.2,.8,.2,1),
+            opacity .22s ease;
 }
 
 /* ================= ANIMASI AKTIF ================= */
@@ -224,3 +225,15 @@
 body.modal-open{
     overflow: hidden;
 }
+
+/* default semua bintang */
+label span {
+    color: inherit;
+}
+
+/* khusus label Bukti */
+.bukti-wrapper label span {
+    color: #dc2626;   /* merah modern */
+    font-weight: 600;
+}
+

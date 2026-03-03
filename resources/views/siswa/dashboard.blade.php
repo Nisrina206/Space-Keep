@@ -81,8 +81,10 @@
 
         <tbody>
         @forelse ($aspirasiTerbaru as $item)
-            <tr>
-
+            <tr
+                 onclick="window.location='{{ route('siswa.status.menunggu') }}'"
+                style="cursor:pointer"
+            >
                 <td>#{{ $item->id }}</td>
 
                 <td>

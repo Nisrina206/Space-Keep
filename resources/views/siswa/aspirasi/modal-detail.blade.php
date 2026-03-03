@@ -60,7 +60,7 @@
 
         {{-- FOOTER --}}
         <div class="modal-footer">
-            <button class="btn-outline" id="btnPdf">Simpan Bukti</button>
+            <a class="btn-outline" id="btnPdf">Simpan Bukti</a>
             <button class="btn-primary" id="closeModal">Kembali</button>
         </div>
 

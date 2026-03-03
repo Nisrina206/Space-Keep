@@ -481,16 +481,6 @@ textarea {
     font-weight: 600;
 }
 
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-}
-
 .success-modal {
     background: white;
     padding: 28px;
@@ -593,3 +583,153 @@ textarea {
     filter: none;     /* INI KUNCI NYA */
 }
 
+
+/* ===== PROFILE TEXT STYLE ===== */
+
+.profil-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.profil-row span {
+    color: #64748b;
+}
+
+.profil-row strong {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* ===== LOGOUT BUTTON ===== */
+
+.btn-logout {
+    border: none;
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.btn-logout img {
+    width: 16px;
+}
+
+/* ===== PASSWORD FORM ===== */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.form-group input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+/* ===== SAVE BUTTON ===== */
+
+.btn-save {
+    background: #0f766e;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.toolbar-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cetak {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    background: #0f766e;
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.btn-cetak:hover {
+    background: #115e59;
+}
+
+.sort-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;          /* jarak teks & select */
+}
+
+.sort-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Notifikasi siswa */
+.notif-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.notif-icon {
+    width: 26px;
+}
+
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 20px;
+}
+
+.notif-dropdown {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    width: 260px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 999;
+}
+
+.notif-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+
+.notif-item:last-child {
+    border-bottom: none;
+}

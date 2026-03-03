@@ -33,6 +33,12 @@
 
         <div class="toolbar-right">
 
+             {{-- ACTION BAR BARU --}}
+       <button type="button" class="btn-filter btn-cetak" id="btnCetak">
+    <img src="{{ asset('img/print.png') }}" alt="">
+    Cetak
+</button>
+
             <x-filter-tanggal
                 :action="route('admin.aspirasi')"
                 :preserve="[
@@ -41,17 +47,21 @@
                 ]"
             />
 
-            <form method="GET" action="{{ route('admin.aspirasi') }}">
-                <input type="hidden" name="status" value="{{ $status }}">
-                <select name="sort" class="sort-select" onchange="this.form.submit()">
-                    <option value="desc" {{ request('sort','desc') === 'desc' ? 'selected' : '' }}>
-                        Terbaru - Lama
-                    </option>
-                    <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>
-                        Lama - Terbaru
-                    </option>
-                </select>
-            </form>
+            
+           <form method="GET" action="{{ route('admin.aspirasi') }}" class="sort-wrapper">
+    <input type="hidden" name="status" value="{{ request('status') }}">
+
+    <span class="sort-label">Sort By</span>
+
+    <select name="sort" class="sort-select" onchange="this.form.submit()">
+        <option value="desc" {{ request('sort','desc') === 'desc' ? 'selected' : '' }}>
+            Terbaru - Lama
+        </option>
+        <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>
+            Lama - Terbaru
+        </option>
+    </select>
+</form>
 
         </div>
     </div>
@@ -109,19 +119,19 @@
                     </span>
                 </td>
                 <td class="aksi-cell">
-                    <button
+                     <button
                         class="btn-aksi btn-detail"
-                        data-nis="{{ $item->siswa?->nis ?? '-' }}"
-                        data-nama="{{ $item->siswa?->nama_lengkap ?? '-' }}"
-                        data-kategori="{{ $item->kategori?->ket_kategori ?? '-' }}"
+                        data-nis="{{ $item->siswa->nis }}"
+                        data-nama="{{ $item->siswa->nama_lengkap }}"
+                        data-kategori="{{ $item->kategori->ket_kategori }}"
                         data-lokasi="{{ $item->lokasi }}"
                         data-keterangan="{{ $item->ket_laporan }}"
                         data-bukti="{{ $item->foto_bukti ? asset('storage/'.$item->foto_bukti) : '' }}"
                         data-status="{{ $item->status }}"
+                        data-tanggal="{{ $item->created_at->format('d/m/Y') }}"
                     >
                         <img src="{{ asset('img/detail.png') }}">
                     </button>
-
                     <a href="{{ route('admin.aspirasi.edit', ['id' => $item->id_aspirasi]) }}" 
                         class="btn-edit"
                         data-nis="{{ $item->siswa?->nis ?? '-' }}"
@@ -221,5 +231,162 @@ searchInput.addEventListener('keyup', function () {
     }, 300);
 });
 </script>
+<script>
+const modal = document.getElementById('modalCetak');
+
+document.getElementById('btnCetak').onclick = () => {
+    modal.classList.add('show');
+};
+
+document.getElementById('batalCetak').onclick = () => {
+    modal.classList.remove('show');
+};
+
+document.getElementById('prosesCetak').onclick = () => {
+
+    const opsi = document.querySelector('input[name="opsi_cetak"]:checked');
+
+    if (!opsi) {
+        alert('Pilih opsi cetak dulu!');
+        return;
+    }
+
+    if (opsi.value === 'range') {
+        const mulai = document.getElementById('tglMulai').value;
+        const akhir = document.getElementById('tglAkhir').value;
+
+        if (!mulai || !akhir) {
+            alert('Pilih tanggal dulu!');
+            return;
+        }
+
+        window.location.href = `/admin/cetak?opsi=range&mulai=${mulai}&akhir=${akhir}`;
+    }
+
+    if (opsi.value === 'all') {
+        window.location.href = `/admin/cetak?opsi=all`;
+    }
+};
+</script>
+
+{{-- ================= MODAL CETAK ================= --}}
+<div class="modal-cetak" id="modalCetak">
+    <div class="modal-content">
+        <h3>Cetak Data</h3>
+
+        <label>
+            <input type="radio" name="opsi_cetak" value="range">
+            Berdasarkan Tanggal
+        </label>
+
+        <div class="range-area">
+            <input type="date" id="tglMulai" placeholder="Start Date">
+            <span>s/d</span>
+            <input type="date" id="tglAkhir" placeholder="End Date">
+        </div>
+
+        <label>
+            <input type="radio" name="opsi_cetak" value="all">
+            Cetak Semua
+        </label>
+
+        <div class="modal-actions">
+            <button type="button" id="batalCetak">Batal</button>
+            <button type="button" id="prosesCetak">Cetak</button>
+        </div>
+    </div>
+</div>
+
+{{-- ================= SCRIPT CETAK ================= --}}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modal  = document.getElementById('modalCetak');
+    const mulai  = document.getElementById('tglMulai');
+    const akhir  = document.getElementById('tglAkhir');
+
+    const btnCetak   = document.getElementById('btnCetak');
+    const btnBatal   = document.getElementById('batalCetak');
+    const btnProses  = document.getElementById('prosesCetak');
+
+    /* OPEN MODAL */
+    btnCetak.onclick = () => {
+        modal.classList.add('show');
+    };
+
+    /* TUTUP + RESET */
+    btnBatal.onclick = () => {
+        modal.classList.remove('show');
+
+        mulai.value = '';
+        akhir.value = '';
+
+        const radio = document.querySelector('input[name="opsi_cetak"]:checked');
+        if (radio) radio.checked = false;
+    };
+
+    /* PROSES CETAK */
+    btnProses.onclick = () => {
+
+        const opsi = document.querySelector('input[name="opsi_cetak"]:checked');
+
+        /* ❌ BELUM PILIH OPSI */
+        if (!opsi) {
+            alert('Silakan pilih opsi cetak terlebih dahulu!');
+            return;
+        }
+
+        /* ✔ OPSI RANGE */
+        if (opsi.value === 'range') {
+
+            if (!mulai.value || !akhir.value) {
+                alert('Silakan pilih rentang tanggal dulu!');
+                return;
+            }
+
+            const url =
+                `/admin/cetak?opsi=range&mulai=${encodeURIComponent(mulai.value)}&akhir=${encodeURIComponent(akhir.value)}`;
+
+           modal.classList.remove('show');   // tutup popup dulu
+
+setTimeout(() => {
+    window.location.href = url;   // baru download
+}, 200);  // delay kecil (100–300ms aman)
+        }
+
+        /* ✔ OPSI ALL */
+        if (opsi.value === 'all') {
+            window.location.href = `/admin/cetak?opsi=all`;
+        }
+    };
+
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modal  = document.getElementById('modalCetak');
+    const mulai  = document.getElementById('tglMulai');
+    const akhir  = document.getElementById('tglAkhir');
+
+    document.getElementById('btnCetak').onclick = () => {
+        modal.classList.add('show');
+    };
+
+    document.getElementById('batalCetak').onclick = () => {
+        modal.classList.remove('show');
+
+        /* RESET OTOMATIS */
+        mulai.value = '';
+        akhir.value = '';
+
+        const radio = document.querySelector('input[name="opsi_cetak"]:checked');
+        if (radio) radio.checked = false;
+    };
+
+});
+</script>
+
 
 @endsection
