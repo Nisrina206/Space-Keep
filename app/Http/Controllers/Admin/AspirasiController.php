@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Aspirasi;
 use Illuminate\Http\JsonResponse;
+use App\Models\Notifikasi;
+use Illuminate\Support\Facades\Auth;
 
 class AspirasiController extends Controller
 {
@@ -106,9 +108,12 @@ class AspirasiController extends Controller
      */
     public function show($id)
     {
-        $item = Aspirasi::with(['siswa', 'kategori'])->findOrFail($id);
+        $item = Aspirasi::findOrFail($id);
 
-        return view('admin.aspirasi.detail', compact('item'));
+        return redirect()->route('admin.aspirasi', [
+            'status' => $item->status,
+            'highlight' => $item->id
+        ]);
     }
 
     /**
@@ -129,15 +134,46 @@ class AspirasiController extends Controller
      * =============================
      */
     public function update(Request $request, $id)
-{
-    $item = Aspirasi::findOrFail($id);
-    $item->status = $request->status;
-    $item->save();
+    {
+        $item = Aspirasi::with('siswa')->findOrFail($id);
 
-    return redirect()->route('admin.aspirasi')
-        ->with('success', 'Status berhasil diubah');
-}
+        // Update status
+        $item->status = $request->status;
+        $item->save();
 
+        // ==========================
+        // 🔔 BUAT NOTIF KE SISWA
+        // ==========================
+        // tentukan route link sesuai status
+        $statusLower = strtolower($request->status);
+
+        switch ($statusLower) {
+            case 'menunggu':
+                $link = route('siswa.status.menunggu');
+                break;
+            case 'diproses':
+                $link = route('siswa.status.diproses');
+                break;
+            case 'selesai':
+                $link = route('siswa.status.selesai');
+                break;
+            default:
+                $link = route('siswa.aspirasi'); // fallback
+        }
+
+        Notifikasi::create([
+            'pengirim_id'   => Auth::id(),
+            'target_id'     => $item->siswa->user_id,
+            'role_penerima' => 'siswa',
+            'judul'         => 'Status Aspirasi Diperbarui',
+            'pesan'         => 'Status aspirasi kamu sekarang: '.$request->status,
+            'link'          => $link,
+            'is_read'       => false
+        ]);
+
+        return redirect()->route('admin.aspirasi')
+            ->with('success', 'Status berhasil diubah');
+    }
 
     /**
      * =============================

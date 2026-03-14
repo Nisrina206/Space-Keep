@@ -40,7 +40,7 @@
 
     {{-- ✅ BUKTI (KANAN ATAS) --}}
     <div class="bukti">
-        <label>Bukti</label>
+        <label>Lampiran</label>
         <img src="{{ asset('storage/'.$item->foto_bukti) }}">
     </div>
 

@@ -46,3 +46,23 @@
 .logout-button:hover {
     background: #e11d48;
 }
+
+.notif-box {
+    width: 350px;
+}
+
+.notif-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notif-item {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.notif-item:hover {
+    background: #f1f1f1;
+}

@@ -74,7 +74,7 @@
                 <th>Kategori</th>
                 <th>Lokasi</th>
                 <th>Keterangan</th>
-                <th>Bukti</th>
+                <th>Lampiran</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -105,12 +105,8 @@
 
                 {{-- ✅ BAGIAN YANG SUDAH DIPERBAIKI --}}
                 <td>
-                    @if ($item->foto_bukti)
-                        <img
-                            src="{{ Storage::url($item->foto_bukti) }}"
-                            alt="Bukti"
-                            class="bukti-img"
-                        >
+                    @if($item->foto_bukti)
+                        <img src="{{ asset('storage/'.$item->foto_bukti) }}" class="bukti-img">
                     @else
                         -
                     @endif

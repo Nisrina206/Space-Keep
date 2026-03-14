@@ -11,9 +11,12 @@ class Notifikasi extends Model
     protected $primaryKey = 'id_notif';
 
     protected $fillable = [
-        'target_id',
-        'role_penerima',
-        'pesan',
-        'is_read'
+        'pengirim_id',
+    'target_id',
+    'role_penerima',
+    'judul',
+    'pesan',
+    'link',
+    'is_read'
     ];
 }

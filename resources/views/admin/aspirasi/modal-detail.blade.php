@@ -42,7 +42,7 @@
             </div>
 
             <div class="bukti-wrapper">
-                <label>Bukti<span>*</span></label>
+                <label>Lampiran<span>*</span></label>
 
                 <div class="bukti-box">
                     <img id="detailBukti" src="">

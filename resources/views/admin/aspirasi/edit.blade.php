@@ -39,7 +39,7 @@
             </div>
 
             <div class="bukti">
-    <label>Bukti</label>
+    <label>Lampiran</label>
     <img src="{{ asset('storage/'.$item->foto_bukti) }}">
 </div>
 
@@ -62,9 +62,9 @@
         </div>
 
         <div class="btn-area">
-            <a href="{{ route('admin.history') }}" class="btn-cancel-edit">Batal</a>
+            <a href="{{ route('admin.aspirasi') }}" class="btn-cancel-edit">Batal</a>
 <button type="submit" class="btn-save-edit">Simpan</button>
-
+</div>
     </form>
 </div>
 

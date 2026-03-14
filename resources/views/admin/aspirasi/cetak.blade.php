@@ -149,7 +149,7 @@
             <th width="95">KATEGORI</th>
             <th width="75">LOKASI</th>
             <th>KETERANGAN</th>
-            <th width="70">BUKTI</th>
+            <th width="70">LAMPIRAN</th>
         </tr>
     </thead>
     <tbody>

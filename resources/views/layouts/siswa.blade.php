@@ -44,6 +44,8 @@
 <script src="{{ asset('js/filter-tanggal.js') }}" defer></script>
 
 {{-- ================= NOTIFIKASI SISWA ================= --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -74,14 +76,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     container.innerHTML =
                         '<div class="notif-item">Tidak ada notifikasi</div>';
                 } else {
-                    data.forEach(item => {
-                        container.innerHTML += `
-                            <div class="notif-item">
-                                <div><b>${item.judul}</b></div>
-                                <div>${item.pesan}</div>
-                            </div>
-                        `;
-                    });
+                   data.forEach(item => {
+    container.innerHTML += `
+        <a href="/siswa/status/menunggu#aspirasi-${item.id_aspirasi}" 
+           style="text-decoration:none; color:inherit;">
+            <div class="notif-item">
+                <div><b>${item.judul}</b></div>
+                <div>${item.pesan}</div>
+            </div>
+        </a>
+    `;
+});
                 }
 
                 if (badge) badge.innerText = data.length;
@@ -90,10 +95,39 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(err => console.log('Notif error:', err));
     }
 
-    setInterval(loadNotifikasiSiswa, 3000);
-    loadNotifikasiSiswa();
+    let notifInterval = null;
+
+    function startNotif() {
+        loadNotifikasiSiswa();
+        notifInterval = setInterval(loadNotifikasiSiswa, 3000);
+    }
+
+    // ===============================
+    // HANDLE POPUP + NOTIF
+    // ===============================
+
+    @if(session('success'))
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#3085d6',
+            allowOutsideClick: false,
+            allowEscapeKey: false
+        }).then(() => {
+            // Setelah popup ditutup baru notif jalan
+            startNotif();
+        });
+
+    @else
+        // Kalau tidak ada popup langsung jalan normal
+        startNotif();
+    @endif
+
 });
 </script>
+
 
 </body>
 </html>

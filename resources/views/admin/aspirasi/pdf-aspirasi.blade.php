@@ -63,7 +63,7 @@
 </table>
 
 <div class="bukti">
-    <h4>Bukti Foto</h4>
+    <h4>Lampiran</h4>
     @if($bukti)
         <img src="{{ public_path('storage/'.$bukti) }}">
     @else

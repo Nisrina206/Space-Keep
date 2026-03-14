@@ -16,6 +16,7 @@
     </div>
 </div>
 
+
 {{-- ================= PROFILE CARD ================= --}}
 <div class="table-card">
 
@@ -23,12 +24,12 @@
         <h3>Profil Siswa</h3>
 
         <form method="POST" action="{{ route('siswa.logout') }}" id="logoutForm">
-    @csrf
-    <button type="button" class="btn-logout" id="btnLogout">
-        <img src="{{ asset('img/logout.png') }}">
-        Logout
-    </button>
-</form>
+            @csrf
+            <button type="button" class="btn-logout" onclick="openLogoutModal()">
+                <img src="{{ asset('img/logout.png') }}">
+                Logout
+            </button>
+        </form>
     </div>
 
     <hr style="margin-bottom:25px;">
@@ -44,6 +45,7 @@
     </div>
 
 </div>
+
 
 {{-- ================= PASSWORD CARD ================= --}}
 <div class="table-card">
@@ -69,27 +71,67 @@
 
 </div>
 
+
 {{-- ================= SUCCESS MODAL ================= --}}
 @if(session('success'))
-<div class="modal-overlay">
+<div class="modal-overlay" id="successModal">
     <div class="success-modal">
         <img src="{{ asset('img/success.png') }}" class="success-icon">
+
         <h3>Password Berhasil Diperbarui</h3>
         <p>Kata sandi akunmu sudah berhasil diperbarui.</p>
-        <button onclick="location.reload()">OK</button>
+
+        <button onclick="closeSuccessModal()">OK</button>
     </div>
 </div>
 @endif
 
+{{-- ================= LOGOUT MODAL ================= --}}
+<div class="modal-overlay" id="logoutModal" style="display:none;">
+
+    <div class="logout-modal">
+
+        <img src="{{ asset('img/konfirmasi.png') }}" class="logout-icon">
+
+        <h3>Logout</h3>
+        <p>Apakah yakin ingin keluar?</p>
+
+        <div class="logout-buttons">
+            <button class="btn-cancel" onclick="closeLogoutModal()">
+                Batal
+            </button>
+
+            <button class="btn-logout-confirm" onclick="submitLogout()">
+                Ya Logout
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
-document.getElementById('btnLogout').addEventListener('click', function () {
 
-    const yakin = confirm('Apakah yakin ingin keluar?');
+function openLogoutModal(){
+    document.getElementById('logoutModal').style.display='flex';
+}
 
-    if (yakin) {
-        document.getElementById('logoutForm').submit();
+function closeLogoutModal(){
+    document.getElementById('logoutModal').style.display='none';
+}
+
+function submitLogout(){
+    document.getElementById('logoutForm').submit();
+}
+
+function closeSuccessModal(){
+    const modal = document.getElementById('successModal');
+    if(modal){
+        modal.style.display='none';
     }
+}
 
-});
 </script>
+
 @endsection

@@ -90,7 +90,7 @@
             <th>Kategori</th>
             <th>Lokasi</th>
             <th>Keterangan</th>
-            <th>Bukti</th>
+            <th>Lampiran</th>
             <th>Status</th>
             <th>Aksi</th>
         </tr>

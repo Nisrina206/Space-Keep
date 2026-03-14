@@ -79,7 +79,7 @@
             <th>Kategori</th>
             <th>Lokasi</th>
             <th>Keterangan</th>
-            <th>Bukti</th>
+            <th>Lampiran</th>
             <th>Status</th>
             <th>Aksi</th>
         </tr>
@@ -118,22 +118,10 @@
                         data-keterangan="{{ $item->ket_laporan }}"
                         data-bukti="{{ $item->foto_bukti ? asset('storage/'.$item->foto_bukti) : '' }}"
                         data-status="{{ $item->status }}"
+                        data-tanggal="{{ $item->created_at->format('d/m/Y') }}"
                     >
                         <img src="{{ asset('img/detail.png') }}">
                     </button>
-
-                    <a href="{{ route('admin.history.edit', ['id' => $item->id_aspirasi]) }}" 
-                        class="btn-edit"
-                        data-nis="{{ $item->siswa?->nis ?? '-' }}"
-                        data-nama="{{ $item->siswa?->nama_lengkap ?? '-' }}"
-                        data-kategori="{{ $item->kategori?->ket_kategori ?? '-' }}"
-                        data-lokasi="{{ $item->lokasi }}"
-                        data-keterangan="{{ $item->ket_laporan }}"
-                        data-bukti="{{ $item->foto_bukti ? asset('storage/'.$item->foto_bukti) : '' }}"
-                        data-status="{{ $item->status }}"
-                    >
-                        <img src="{{ asset('img/edit.png') }}">
-                    </a>
                 </td>
             </tr>
         @endforeach

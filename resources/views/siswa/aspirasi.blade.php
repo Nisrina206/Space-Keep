@@ -16,16 +16,19 @@
 
         <div class="form-grid">
 
+            {{-- NIS AUTO --}}
             <div class="form-group">
                 <label>NIS Siswa<span class="required">*</span></label>
                 <input type="text" value="{{ auth()->user()->nis }}" readonly>
             </div>
 
+            {{-- LOKASI --}}
             <div class="form-group">
                 <label>Lokasi<span class="required">*</span></label>
                 <input type="text" name="lokasi" placeholder="Masukkan Lokasi" required>
             </div>
 
+            {{-- NAMA AUTO --}}
             <div class="form-group">
                 <label>Nama Siswa<span class="required">*</span></label>
                 <input type="text"
@@ -33,6 +36,7 @@
                        readonly>
             </div>
 
+            {{-- KATEGORI --}}
             <div class="form-group">
                 <label>Kategori<span class="required">*</span></label>
                 <select name="kategori_id" required>
@@ -45,18 +49,21 @@
                 </select>
             </div>
 
+            {{-- BUKTI --}}
             <div class="form-group">
-                <label>Bukti<span class="required">*</span></label>
-                <input type="file" name="bukti" accept="image/*" required>
+                <label>Lampiran<span class="required">*</span></label>
+                <input type="file" name="bukti" required>
             </div>
 
         </div>
 
+        {{-- KETERANGAN --}}
         <div class="form-group full">
             <label>Keterangan<span class="required">*</span></label>
             <textarea name="keterangan" placeholder="Masukkan Keterangan" required></textarea>
         </div>
 
+        {{-- BUTTON --}}
         <div class="form-actions">
             <a href="{{ route('siswa.dashboard') }}" class="btn-cancel">Batal</a>
             <button type="submit" class="btn-save">Simpan</button>
@@ -66,36 +73,20 @@
 
 </div>
 
-
-{{-- ✅ MODAL SUCCESS --}}
 @if (session('success'))
 <div class="modal-overlay" id="successModal">
     <div class="success-modal">
         <h3>Berhasil! 🎉</h3>
-        <p>{{ session('success') }}</p>
-        <button id="btnOk">OK</button>
+        <p>Aspirasi Anda telah tersimpan dengan status <b>menunggu</b></p>
+        <button onclick="closeModal()">OK</button>
     </div>
 </div>
 @endif
 
-@endsection
-
-{{-- ✅ SCRIPT DI LUAR CONTENT (lebih aman) --}}
-@if (session('success'))
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const modal = document.getElementById('successModal');
-    const btnOk = document.getElementById('btnOk');
-
-    if (modal && btnOk) {
-        btnOk.addEventListener('click', function () {
-            modal.style.display = 'none';
-        });
-    }
-
-    // 🔥 FALLBACK (anti gagal total)
-    console.log("Session success:", @json(session('success')));
-});
+function closeModal() {
+    document.getElementById('successModal').style.display = 'none';
+}
 </script>
-@endif
+
+@endsection

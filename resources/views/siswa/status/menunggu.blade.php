@@ -74,7 +74,7 @@
             <th>Kategori</th>
             <th>Lokasi</th>
             <th>Keterangan</th>
-            <th>Bukti</th>
+            <th>Lampiran</th>
             <th>Status</th>
             <th>Aksi</th>
         </tr>
@@ -223,6 +223,33 @@ searchInput.addEventListener('keyup', function () {
             });
 
     }, 300);
+});
+</script>
+
+
+{{-- ================= AUTO SCROLL + KEDIP ================= --}}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    if (window.location.hash) {
+
+        const target = document.querySelector(window.location.hash);
+
+        if (target) {
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            target.style.transition = "background-color 0.5s ease";
+            target.style.backgroundColor = "#fff3cd";
+
+            setTimeout(() => {
+                target.style.backgroundColor = "";
+            }, 2500);
+        }
+    }
 });
 </script>
 

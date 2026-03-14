@@ -193,3 +193,33 @@
         transform: translateY(0);
     }
 }
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width:768px){
+
+/* sidebar kecil */
+.sidebar{
+    width:250px;
+    position:fixed;
+    left:0;
+    top:0;
+    height:100vh;
+}
+
+/* sembunyikan text menu */
+.sidebar .menu-text{
+    display:none;
+}
+
+/* icon center */
+.sidebar li{
+    justify-content:center;
+}
+
+/* konten full */
+.admin-main{
+    margin-left:70px;
+}
+
+}

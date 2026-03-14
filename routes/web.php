@@ -108,11 +108,11 @@ Route::prefix('admin')
         Route::get('/siswa', [DataSiswaController::class, 'index'])
             ->name('admin.siswa');
 
-        Route::post('/siswa/{id}/reset-sandi', [DataSiswaController::class, 'reset'])
-            ->name('admin.datasiswa.reset');
-
         Route::get('/siswa/search', [DataSiswaController::class, 'search'])
             ->name('admin.siswa.search');
+
+        Route::post('/siswa/reset/{id}', [DashboardController::class, 'resetSandi'])
+            ->name('admin.siswa.reset');
 
         /*
         |---------------- NOTIFIKASI ----------------|
@@ -235,6 +235,15 @@ Route::post('/logout', [ProfilSiswaController::class, 'logout'])
 
 });
 
-// notifikasi siswa//
-Route::get('/notifikasi/siswa', [NotifikasiController::class, 'siswa'])
-    ->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/notifikasi', [NotifikasiController::class,'index'])
+        ->name('notif.index');
+
+    Route::get('/notifikasi/baca/{id}', [NotifikasiController::class,'baca'])
+        ->name('notif.baca');
+
+    Route::post('/notifikasi/baca-semua', [NotifikasiController::class,'bacaSemua'])
+        ->name('notif.bacaSemua');
+
+});
