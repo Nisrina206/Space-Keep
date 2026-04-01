@@ -8,10 +8,10 @@ body {
 }
 
 .login-wrapper {
-    height: 100vh;
+    min-height: 100vh;
     background:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url('/img/fotosekolah.png') center center / cover no-repeat;
+        /* linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)), */
+        url('/img/esemka.jpeg') center center / cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,16 +21,21 @@ body {
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0,0,0,0.30);
 }
 
 /* CARD */
+/* ...existing code... */
 .login-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 32px;
+    background: rgba(0, 0, 0, 0.50); /* semi-transparent dark */
+    border-radius: 22px;
+    padding: 38px 32px 32px 32px;
     width: 380px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
     z-index: 1;
+    backdrop-filter: blur(2px);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    color: #fff;
 }
 
 /* HEADER */
@@ -52,7 +57,7 @@ h2 {
 
 .subtitle {
     text-align: center;
-    color: #777;
+    color: #c3bfbf;
     margin-bottom: 20px;
 }
 
@@ -110,7 +115,7 @@ h2 {
 .btn-login {
     width: 100%;
     padding: 12px;
-    background: #23979F;
+    background: #066B72;
     color: #fff;
     border: none;
     border-radius: 12px;
@@ -129,7 +134,7 @@ h2 {
 }
 
 .register-text a {
-    color: #0057ff;
+    color: #0dedfa;
     text-decoration: none;
     font-weight: bold;
 }

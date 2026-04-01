@@ -10,10 +10,10 @@
 /* ================= SIDEBAR ================= */
 
 .sidebar {
-    width: 260px;
+    width: 250px;
     height: 100vh;
-    background: #ffffff;
-    padding: 24px 18px;
+    background: #188b8c;
+    padding: 24px 14px;
     display: flex;
     flex-direction: column;
 
@@ -29,12 +29,12 @@
 .sidebar-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
     margin-bottom: 40px;
 }
 
 .sidebar-logo img {
-    width: 200px;
+    width: 190px;
 }
 
 /* ================= MENU ================= */
@@ -56,10 +56,11 @@
     border-radius: 15px;
 
     text-decoration: none;
-    color: #132020;
+    color: white;
     font-size: 16px;
 
     transition: all 0.2s ease;
+    background: transparent; /* Background transparan */
 }
 
 .menu-item img {
@@ -68,17 +69,17 @@
 
 /* ACTIVE */
 .menu-item.active {
-    background: #2aa1a8;
-    color: #ffffff;
+    background: white;
+    color: #066B72;
 }
 
 .menu-item.active img {
-    filter: brightness(0) invert(1);
+    filter: none;
 }
 
 /* HOVER */
 .menu-item:hover {
-    background: #e6f6f7;
+    background: #b2b6b7;
 }
 
 /* ================= FOOTER ================= */
@@ -97,7 +98,7 @@
     justify-content: center;
     gap: 10px;
 
-    background: #0ea5a4;
+    background: #066B72;
     color: white;
 
     cursor: pointer;
@@ -108,7 +109,7 @@
 
 .profil-toggle img {
     width: 18px;
-    filter: brightness(0) invert(1);
+    /* filter: brightness(0) invert(1); */
 }
 
 /* ================= PANEL ADMIN ================= */
@@ -192,34 +193,4 @@
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media (max-width:768px){
-
-/* sidebar kecil */
-.sidebar{
-    width:250px;
-    position:fixed;
-    left:0;
-    top:0;
-    height:100vh;
-}
-
-/* sembunyikan text menu */
-.sidebar .menu-text{
-    display:none;
-}
-
-/* icon center */
-.sidebar li{
-    justify-content:center;
-}
-
-/* konten full */
-.admin-main{
-    margin-left:70px;
-}
-
 }

@@ -34,10 +34,10 @@
         <div class="toolbar-right">
 
              {{-- ACTION BAR BARU --}}
-       <button type="button" class="btn-filter btn-cetak" id="btnCetak">
-    <img src="{{ asset('img/print.png') }}" alt="">
-    Cetak
-</button>
+        <button type="button" class="btn-filter btn-cetak" id="btnCetak">
+            <img src="{{ asset('img/print.png') }}" alt="">
+            Cetak
+        </button>
 
             <x-filter-tanggal
                 :action="route('admin.aspirasi')"

@@ -136,7 +136,6 @@
 
         {{ $data->links('vendor.pagination.admin') }}
     </div>
-
 </div>
 
 {{-- ================= MODAL + ASSET ================= --}}

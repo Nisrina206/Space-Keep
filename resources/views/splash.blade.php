@@ -7,7 +7,7 @@
     <div class="brand">
 
         <!-- LOGO -->
-        <img src="{{ asset('img/Logo_SMK.png') }}" alt="Logo Sekolah" class="logo">
+        <img src="{{ asset('img/Spacekeep-white.png') }}" alt="Logo Sekolah" class="logo">
 
         <!-- GARIS -->
         <span class="divider">|</span>
@@ -15,8 +15,8 @@
         <!-- TEKS -->
         <div class="text-mask"></div>
         <div class="text">
-            <span class="smkn">SMKN 4</span>
-            <span class="school">BOJONEGORO</span>
+            <span class="smkn">SpaceKeep</span>
+            <span class="school">SMKN 4 BOJONEGORO</span>
         </div>
 
         <script>

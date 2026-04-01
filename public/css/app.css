@@ -21,9 +21,9 @@ body {
 }
 
 .logo {
-    width: 11vw;
-    max-width: 200px;
-    min-width: 140px;
+    width: 18vw;
+    max-width: 235px;
+    min-width: 160px;
     height: auto;
     opacity: 0;
 
@@ -52,13 +52,13 @@ body {
 }
 
 .smkn {
-    color: #23979F;
+    color: #066B72;
     font-size: clamp(30px, 3.2vw, 38px);
     font-weight: 700;
 }
 
 .school {
-    color: #F8B528;
+    color: #0dedfa;
     font-size: clamp(26px, 2.8vw, 34px);
     font-weight: 700;
 }

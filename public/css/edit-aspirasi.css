@@ -140,7 +140,7 @@
 /* Tombol simpan */
 .btn-save {
     border: none;
-    background: #1fa2a4;
+    background: #066B72;
     color: white;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(31,162,164,0.25);
@@ -175,7 +175,7 @@
 }
 
 .btn-save-edit {
-    background: #1fa2a4;
+    background: #066B72;
     color: white;
     border-radius: 999px;
     padding: 9px 24px;
@@ -207,4 +207,3 @@
 .btn-cancel-edit:hover {
     background: #f8fafc;
 }
-

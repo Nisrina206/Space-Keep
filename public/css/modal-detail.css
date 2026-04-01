@@ -74,7 +74,6 @@
     white-space: nowrap;
 }
 
-
 /* ================= GARIS ================= */
 .modal-box hr{
     border: none;
@@ -90,7 +89,7 @@
     text-align: center;
     font-size: 20px;
     font-weight: 700;
-    color: #0f766e;
+    color: #066B72;
     margin-bottom: 26px;
 }
 
@@ -186,8 +185,16 @@
     color: #15803d;
 }
 
-
 /* ================= FOOTER ================= */
+.modal {
+    z-index: 999;
+}
+
+.modal-content {
+    z-index: 1000;
+    position: relative;
+}
+
 .modal-footer{
     margin-top: 32px;
     display: flex;
@@ -203,7 +210,7 @@
 }
 
 .btn-primary{
-    background: #0f766e;
+    background: #066B72;
     color: #fff;
     padding: 10px 26px;
     border-radius: 12px;

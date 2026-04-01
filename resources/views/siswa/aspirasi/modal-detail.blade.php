@@ -3,7 +3,7 @@
 
         <div class="modal-header-top">
             <div class="school-info">
-                <img src="{{ asset('img/logo.png') }}" class="logo">
+                <img src="{{ asset('img/logowhite.png') }}" class="logo">
             </div>
             <div class="date-info">
                 Tanggal : <span id="detailTanggal">-</span>
@@ -42,27 +42,47 @@
             </div>
 
             <div class="bukti-wrapper">
-                <label>Lampiran<span>*</span></label>
+                <label>Bukti<span>*</span></label>
 
                 <div class="bukti-box">
                     <img id="detailBukti" src="">
                 </div>
 
-                 <div class="status-wrapper">
-    <label>Status<span>*</span></label>
-    <span id="detailStatus" class="status-pill {{ strtolower($item->status) }}">
-        {{ $item->status }}
-    </span>
-</div>
+                <div class="status-wrapper">
+                    <label>Status<span>*</span></label>
+                    <span id="detailStatus" class="status-pill">-</span>
+                </div>
             </div>
 
         </div>
 
-        {{-- FOOTER --}}
+        <!-- FOOTER -->
         <div class="modal-footer">
-            <a class="btn-outline" id="btnPdf">Simpan Bukti</a>
-            <button class="btn-primary" id="closeModal">Kembali</button>
+            <button type="button" class="btn-outline" id="btnPdf">
+                Simpan Bukti
+            </button>
+            <button type="button" class="btn-primary" id="closeModal">
+                Kembali
+            </button>
+            
         </div>
 
     </div>
 </div>
+
+<!-- Modal Success -->
+<div class="modal-overlay" id="successModal">
+    <div class="success-modal">
+        <h3>Berhasil! 🎉</h3>
+        <p>Aspirasi Anda telah tersimpan dengan status <b>menunggu</b></p>
+        <button onclick="closeModal()">OK</button>
+    </div>
+</div>
+
+{{-- @endif --}}
+
+<script>
+function closeModal() {
+    document.getElementById('successModal').style.display = 'none';
+}
+</script>

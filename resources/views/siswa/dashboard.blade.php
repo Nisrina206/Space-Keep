@@ -85,7 +85,9 @@
                  onclick="window.location='{{ route('siswa.status.menunggu') }}'"
                 style="cursor:pointer"
             >
-                <td>#{{ $item->id }}</td>
+                <td>
+                    LP-{{ str_pad($loop->iteration, 4, '0', STR_PAD_LEFT) }}
+                </td>
 
                 <td>
                     {{ $item->created_at ? $item->created_at->format('d-m-Y') : '-' }}

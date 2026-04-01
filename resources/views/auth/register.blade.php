@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -26,31 +26,33 @@
             @csrf
 
             <!-- NIS -->
-            <div class="form-group {{ $errors->has('nis') ? 'error' : '' }}">
-                <label>NIS<span>*</span></label>
-                <input
-                    type="text"
-                    name="nis"
-                    value="{{ old('nis') }}"
-                    placeholder="Masukkan NIS..."
-                >
-                @error('nis')
-                    <small class="error-text">{{ $message }}</small>
-                @enderror
-            </div>
+            <div class="row">
+                <div class="form-group {{ $errors->has('nis') ? 'error' : '' }}">
+                    <label>NIS<span>*</span></label>
+                    <input
+                        type="text"
+                        name="nis"
+                        value="{{ old('nis') }}"
+                        placeholder="Masukkan NIS..."
+                    >
+                    @error('nis')
+                        <small class="error-text">{{ $message }}</small>
+                    @enderror
+                </div>
 
-            <!-- NAMA LENGKAP -->
-            <div class="form-group {{ $errors->has('nama_lengkap') ? 'error' : '' }}">
-                <label>Nama Lengkap<span>*</span></label>
-                <input
-                    type="text"
-                    name="nama_lengkap"
-                    value="{{ old('nama_lengkap') }}"
-                    placeholder="Masukkan Nama Lengkap..."
-                >
-                @error('nama_lengkap')
-                    <small class="error-text">{{ $message }}</small>
-                @enderror
+                <!-- NAMA LENGKAP -->
+                <div class="form-group {{ $errors->has('nama_lengkap') ? 'error' : '' }}">
+                    <label>Nama Lengkap<span>*</span></label>
+                    <input
+                        type="text"
+                        name="nama_lengkap"
+                        value="{{ old('nama_lengkap') }}"
+                        placeholder="Masukkan Nama Lengkap..."
+                    >
+                    @error('nama_lengkap')
+                        <small class="error-text">{{ $message }}</small>
+                    @enderror
+                </div>
             </div>
 
             <!-- KELAS -->

@@ -63,8 +63,8 @@
 
         <div class="btn-area">
             <a href="{{ route('admin.aspirasi') }}" class="btn-cancel-edit">Batal</a>
-<button type="submit" class="btn-save-edit">Simpan</button>
-</div>
+            <button type="submit" class="btn-save-edit">Simpan</button>
+        </div>
     </form>
 </div>
 

@@ -10,9 +10,9 @@
 /* ================= SIDEBAR SISWA ================= */
 
 .sidebar-siswa {
-    width: 260px;
+    width: 250px;
     height: 100vh;
-    background: #ffffff;
+    background: #066B72;
     padding: 24px 18px;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,8 @@
     top: 0;
     left: 0;
 
-    border-right: 1.5px solid #d1d1d1;
+    box-shadow: 0 0 16px 0 rgba(0,0,0,0.08);
+    border-right: none;
 }
 
 /* ================= LOGO ================= */
@@ -34,7 +35,7 @@
 }
 
 .sidebar-logo img {
-    width: 200px;
+    width: 160px;
 }
 
 /* ================= MENU ================= */
@@ -50,38 +51,36 @@
 .menu-item {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 13px;
 
-    padding: 14px 18px;
-    border-radius: 15px;
+    padding: 12px 16px;
+    border-radius: 16px;
 
     text-decoration: none;
-    color: #132020;
+    color: #fff !important;
     font-size: 16px;
 
     transition: all 0.2s ease;
     cursor: pointer;
+    background: none;
+    box-shadow: none;
 }
-
-.menu-item img {
-    width: 20px;
-}
-
-/* ACTIVE MENU UTAMA */
 
 .menu-item.active {
-    background: #2aa1a8;
-    color: white;
+    background: #fff;
+    color: #066B72 !important;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+    border-radius: 16px;
+    border: none;
 }
 
 .menu-item.active img {
-    filter: brightness(0) invert(1);
+    filter: none;
+    color: #066B72;
 }
 
-/* HOVER */
-
 .menu-item:hover {
-    background: #e6f6f7;
+    background: #b2b6b7;
 }
 
 /* ================= STATUS TOGGLE ================= */
@@ -112,8 +111,8 @@
 .status-submenu {
     display: none;
     flex-direction: column;
-    gap: 10px;
-    padding-left: 10px;
+    gap: 8px;
+    padding: 8px 0 8px 16px;
     animation: fadeIn 0.2s ease;
 }
 
@@ -127,37 +126,80 @@
     display: flex;
     align-items: center;
     gap: 12px;
-
-    padding: 10px 14px;
-    border-radius: 12px;
-
+    padding: 10px 16px;
+    border-radius: 8px;
     text-decoration: none;
-    color: #1f2d2d;
-    font-size: 15px;
-
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 500;
     transition: all 0.2s ease;
+    background-color: transparent;
+    border: 1px solid transparent;
 }
 
-.submenu-item img {
-    width: 18px;
+/* Style untuk SVG - stroke saja */
+.submenu-item svg {
+    width: 20px;
+    height: 20px;
+    stroke: #999999;
+    stroke-width: 1.8;
+    fill: none;
+    transition: stroke 0.2s ease;
 }
 
-/* Hover submenu */
-
+/* Hover effect - transparan, hanya warna berubah */
 .submenu-item:hover {
-    background: #edf7f7;
+    background-color: transparent;  /* tetap transparan */
+    border-color: transparent;      /* tidak ada border */
 }
 
-/* ACTIVE SUBMENU (HIJAU) */
+.submenu-item:hover svg {
+    stroke: white;                /* stroke berubah hijau */
+}
+
+.submenu-item:hover span {
+    color: #ffffff;                  /* teks berubah hijau */
+}
+
+/* ================= ACTIVE STATE ================= */
 
 .submenu-item.active {
-    background: #0ea5a4;
-    color: white;
-    font-weight: 600;
+    background-color: transparent !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
 }
 
-.submenu-item.active img {
-    filter: brightness(0) invert(1);
+.submenu-item.active svg {
+    stroke: #ffffff !important;
+    fill: none !important;
+}
+
+.submenu-item.active span {
+    color: #ffffff !important;
+}
+
+/* Hover untuk active state */
+.submenu-item.active:hover {
+    background-color: transparent !important;
+    border: 1px solid #ffffff !important;
+}
+
+.submenu-item.active:hover svg {
+    stroke: #ffffff !important;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    .submenu-item {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+    
+    .submenu-item svg {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 /* ================= FOOTER ================= */
@@ -168,12 +210,34 @@
     border-top: 2px solid #d1d1d1;
 }
 
-/* ================= ANIMASI ================= */
+/* ================= PROFIL BUTTON ================= */
+
+.profil-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background: #066B72;
+    color: white;
+
+    cursor: pointer;
+    font-weight: 600;
+
+    border-radius: 14px;
+}
+
+.profil-toggle img {
+    width: 18px;
+    /* filter: brightness(0) invert(1); */
+}
+
+/* ================= ANIMATION ================= */
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(-5px);
     }
     to {
         opacity: 1;
